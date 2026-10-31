@@ -1,0 +1,52 @@
+﻿COMPATIBILIDAD DE LAS HERRAMIENTAS POR SISTEMA
+==============================================
+
+Regla: una herramienta solo se usa sobre una evidencia si está VALIDADA en el mismo sistema
+(versión de Windows, PowerShell y .NET). Validar en Windows 11 no dice nada de Windows 7.
+Antes de un caso: identificar el sistema del equipo investigado y elegir la carpeta.
+
+  moderno\  Windows 10/11 · PowerShell 5.1+ · .NET 4.5+
+  win7\     Windows 7/8 · PowerShell 2.0 · .NET 4.0 sin 4.5 · sin soporte de firmas SHA-2
+
+Estados: VALIDADA (probada en ese sistema, con evidencia) · FALLA (probada, no funciona) ·
+SIN PROBAR (no usar sobre evidencia hasta validarla).
+
+Sistemas de prueba
+------------------
+WIN11  VM "Windows 11 x64" (portátil). Windows 11, PowerShell 5.1.
+WIN7   Importación de FORENSIC_10.ova (hostname FORENSE-06). Windows 7 Professional SP1
+       build 7601.17514 sin actualizar, PowerShell 2.0, .NET 4.0, teclado EE. UU.
+
+Herramienta / lanzador                         | Sistema | Estado     | Fecha      | Evidencia
+-----------------------------------------------|---------|------------|------------|----------------------------------------------
+moderno\memoria\volcar-memoria-dumpit.bat      | WIN11   | VALIDADA   | 2026-10-30 | DumpIt 3.6, código 0, marca encontrada en el volcado
+DumpIt 3.6.20230117 x64 (cualquier lanzador)   | WIN7    | FALLA      | 2026-10-30 | "Load driver failed with 0xC0000428": driver con firma SHA-2 que Win7 sin actualizar no verifica
+moderno\memoria\volcar-memoria.bat (WinPmem)   | WIN11   | VALIDADA   | 2026-10-13 | Caso PRUEBA-KIT
+win7\memoria\volcar-memoria.bat   | WIN7    | VALIDADA   | 2026-10-30 | WinPmem mini (driver firma sha1RSA, Binalyze 2020), código 1 = correcto, 1 GiB en 3 min, marca encontrada 6 veces
+moderno\respuesta-en-vivo.bat (script módulo)  | WIN11   | VALIDADA   | 2026-10-13 | Caso PRUEBA-KIT
+moderno\respuesta-en-vivo.ps1 (script módulo)  | WIN7    | FALLA      | 2026-10-30 | ParserError en la línea 88 (-notin no existe en PowerShell 2.0): no recoge nada
+win7\respuesta-en-vivo.bat                 | WIN7    | VALIDADA   | 2026-10-30 | 19 ficheros sin errores en 12 s; los 21 hashes de hashes-sha256.csv coinciden al recalcularlos. Incluye manage-bde -status (cifrado)
+moderno\triaje\triaje-kape.bat (KAPE 1.3.0.2)  | WIN11   | VALIDADA   | 2026-10-30 | KapeTriage, 681 ficheros, VHDX 644 MB, código 0
+KAPE 1.3.0.2 (cualquier lanzador)              | WIN7    | FALLA      | 2026-10-30 | Requiere .NET 4.5.2; con .NET 4.0: NotSupportedException en ServicePointManager.set_SecurityProtocol
+Velociraptor 0.77.3 windows-amd64              | WIN7    | NO APLICA  | 2026-10-30 | Compilado con Go 1.26/1.27; Go no soporta Windows 7 desde 1.21
+win7\triaje\triaje-velociraptor.bat (legacy)   | WIN7    | FALLA      | 2026-10-30 | Sin UCRT: "api-ms-win-crt-stdio-l1-1-0.dll is missing" (Win7 sin KB2999226)
+win7\triaje\triaje-velociraptor.bat + UCRT     | WIN7    | VALIDADA   | 2026-10-30 | Con las 43 DLL del UCRT (KB2999226 x64, 10.0.10240, firma Microsoft) junto al .exe (despliegue local, no se instala nada). Código 0 en 26 s; zip 17,9 MB: $MFT (69 MB), 5 colmenas, NTUSER.DAT, 69 .evtx; marca encontrada 2 veces en $MFT (UTF-16). Parámetro correcto: Glob (no SearchFilesGlob)
+moderno\cifrado\detectar-cifrado.bat (EDD 3.1) | WIN11   | VALIDADA   | 2026-10-13 | Caso PRUEBA-KIT
+moderno\cifrado\detectar-cifrado.bat (EDD 3.1) | WIN7    | VALIDADA   | 2026-10-30 | EDD necesita .NET 4.0 (la VM lo tiene). Revisa 2 discos y 2 volúmenes, sin cifrado; certutil -hashfile SHA256 funciona y coincide con el anfitrión
+win7\cifrado\detectar-cifrado.bat              | WIN7    | VALIDADA*  | 2026-10-30 | Copia del anterior con caso y equipo por defecto (* mismo EDD y misma lógica; solo cambian los valores por defecto)
+FTK Imager 8.3 portable                        | WIN11   | VALIDADA   | 2026-10-13 | Abre (caso PRUEBA-KIT)
+FTK Imager 8.3 portable                        | WIN7    | FALLA      | 2026-10-30 | No abre: da error al iniciar. NO APLICA en win7: FTK Imager y bloqueo-usb.ps1 se usan en la estación del analista (Windows 11), no en el equipo investigado. Exterro solo distribuye la versión actual (sus páginas de versiones antiguas redirigen a la 8.3)
+Sysinternals de consola (21 probadas)          | WIN7    | 19 VALIDADAS | 2026-10-30 | windows\probar-compatibilidad.bat -> casos\_COMPATIBILIDAD\FORENSE-06.txt. Copiadas a win7\sysinternals\: accesschk, du, handle, Listdlls, logonsessions, ntfsinfo, pendmoves, pipelist, PsGetsid, PsInfo, PsLoggedon, PsService, psfile, pslist, psloglist, sigcheck, streams, strings, tcpvcon (todas 64 bits)
+autorunsc64 (Sysinternals actual)              | WIN7    | FALLA      | 2026-10-30 | Entry Point Not Found: CryptCATAdminAcquireContext2 en WINTRUST.dll (función de Windows 8+)
+procdump64 (Sysinternals actual)               | WIN7    | FALLA      | 2026-10-30 | Falta api-ms-win-core-path-l1-1-0.dll (Windows 8+; no la cubre el UCRT)
+pslist64                                       | WIN7    | Nota       | 2026-10-30 | Ignora -accepteula y muestra la ventana de licencia: pulsar Agree (o usar /accepteula)
+vnetsniffer.exe (VMware, desde el anfitrión)   | ANFITR. | VALIDADA   | 2026-10-30 | VMnet1, pcap libpcap, 68 paquetes en los dos sentidos
+
+Notas de Windows 7
+------------------
+- Las herramientas de RAM escriben un driver temporal en el disco del equipo (WinPmem:
+  C:\Users\<usuario>\AppData\Local\Temp\pme*.tmp, luego lo borra). Anotarlo en el acta.
+- El SHA-256 se calcula en la estación de trabajo del analista (PowerShell 2.0 no tiene
+  Get-FileHash).
+- Teclado de la VM en inglés (EE. UU.): la tecla "-" del teclado español escribe "/". Usar el
+  "-" del teclado numérico. Los lanzadores llevan caso y equipo por defecto para no teclear.

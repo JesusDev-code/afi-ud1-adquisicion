@@ -1,0 +1,28 @@
+Prueba de compatibilidad - Fri 10/30/2026 20:26:56.83
+Equipo: FORENSE-06
+
+Microsoft Windows [Version 6.1.7601]
+
+Codigos: 0/1/otros = arranca (mirar la primera linea) - 9009 = no encontrado - -1073741515 = falta una DLL - -1073741511 = funcion no encontrada en una DLL - -1073741701 = arquitectura incorrecta
+
+accesschk64 | codigo 1 | Accesschk v6.15 - Reports effective permissions for securable objects
+autorunsc64 | codigo -1073741511 | 
+du64 | codigo -1 | DU v1.62 - Directory disk usage reporter
+handle64 | codigo 1 | Nthandle v5.0 - Handle viewer
+Listdlls64 | codigo 1 | Listdlls v3.2 - Listdlls
+logonsessions64 | codigo -1 | LogonSessions v1.41 - Lists logon session information
+ntfsinfo64 | codigo 0 | NtfsInfo v1.2 - NTFS Information Dump
+pendmoves64 | codigo 0 | PendMoves v1.3 - Lists pending delayed movefile operations
+pipelist64 | codigo 0 | Pipe Name                                    Instances       Max Instances
+procdump64 | codigo -1073741515 | 
+PsGetsid64 | codigo -1 | PsGetSid v1.47 - Translates SIDs to names and vice versa
+PsInfo64 | codigo -1 | PsInfo v1.8 - Local and remote system information viewer
+PsLoggedon64 | codigo -1 | PsLoggedon v1.35 - See who's logged on
+PsService64 | codigo -1 | PsService v2.26 - Service information and configuration utility
+psfile64 | codigo -1 | PsFile v1.04 - Lists files and directories opened remotely
+pslist64 | codigo 255 | PsList v1.41 - Process information lister
+psloglist64 | codigo -1 | PsLoglist v2.82 - local and remote event log viewer
+sigcheck64 | codigo -1 | Sigcheck v2.92 - File version and signature viewer
+streams64 | codigo -1 | streams v1.60 - Reveal NTFS alternate streams.
+strings64 | codigo -1 | Strings v2.54 - Search for ANSI and Unicode strings in binary images.
+tcpvcon64 | codigo 0 | Tcpvcon.exe v4.19 - Sysinternals TcpVcon

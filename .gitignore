@@ -1,0 +1,13 @@
+# Evidence never goes to the repository: only its hashes
+red/
+*.raw
+*.mem
+*.dmp
+*.pcap
+*.pcapng
+*.E0*
+*.e0*
+*.zip
+*.vmdk
+*.ova
+*.dd

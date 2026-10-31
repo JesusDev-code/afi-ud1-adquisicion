@@ -1,0 +1,10 @@
+[Sat 10/31/2026 11:18:37.65] Caso: AFI-UD1-ALMADRABA
+[Sat 10/31/2026 11:18:37.81] Equipo: FORENSIC_10 (hostname: FORENSE-06)
+[Sat 10/31/2026 11:18:37.93] Usuario: FORENSE-06\Administrador
+[Sat 10/31/2026 11:18:38.04] Herramienta: D:\windows\win7\memoria\winpmem_mini_x64_rc2.exe
+[Sat 10/31/2026 11:18:38.17] Destino: D:\casos\AFI-UD1-ALMADRABA\FORENSIC_10\memoria\FORENSIC_10-ram.raw
+[Sat 10/31/2026 11:18:38.31] Comando: winpmem_mini_x64_rc2.exe D:\casos\AFI-UD1-ALMADRABA\FORENSIC_10\memoria\FORENSIC_10-ram.raw
+[Sat 10/31/2026 11:18:38.43] INICIO de la adquisicion (no cierres esta ventana)
+[Sat 10/31/2026 11:21:38.53] FIN de la adquisicion (codigo de salida: 1; en WinPmem mini 1 = correcto)
+[Sat 10/31/2026 11:21:38.67] Tamano del volcado: 1073741824 bytes
+[Sat 10/31/2026 11:21:38.79] El SHA-256 del volcado se calcula en la estacion de trabajo del analista

@@ -1,0 +1,47 @@
+﻿2026-10-31 10:24:18Z  Caso AFI-UD1-ALMADRABA · evidencia FORENSIC_10 · equipo FORENSE-06 · usuario FORENSE-06\Administrador
+2026-10-31 10:24:18Z  Hora local 2026-10-31 11:24:18 · zona (UTC+01:00) Brussels, Copenhagen, Madrid, Paris · desfase UTC 60 min
+2026-10-31 10:24:18Z  Anota en el acta la diferencia entre este reloj y la hora real.
+2026-10-31 10:24:18Z  INICIO 01-fecha-hora
+2026-10-31 10:24:18Z  FIN    01-fecha-hora
+2026-10-31 10:24:18Z  INICIO 01b-sincronizacion
+2026-10-31 10:24:18Z  FIN    01b-sincronizacion
+2026-10-31 10:24:19Z  INICIO 02-arranque
+2026-10-31 10:24:19Z  FIN    02-arranque
+2026-10-31 10:24:19Z  INICIO 03-sesiones
+2026-10-31 10:24:19Z  FIN    03-sesiones
+2026-10-31 10:24:19Z  INICIO 04-conexiones-tcp
+2026-10-31 10:24:19Z  FIN    04-conexiones-tcp
+2026-10-31 10:24:19Z  INICIO 05-puertos-udp
+2026-10-31 10:24:20Z  FIN    05-puertos-udp
+2026-10-31 10:24:20Z  INICIO 06-netstat
+2026-10-31 10:24:20Z  FIN    06-netstat
+2026-10-31 10:24:20Z  INICIO 07-cache-arp
+2026-10-31 10:24:20Z  FIN    07-cache-arp
+2026-10-31 10:24:20Z  INICIO 08-cache-dns
+2026-10-31 10:24:20Z  FIN    08-cache-dns
+2026-10-31 10:24:20Z  INICIO 09-rutas
+2026-10-31 10:24:20Z  FIN    09-rutas
+2026-10-31 10:24:20Z  INICIO 10-configuracion-red
+2026-10-31 10:24:20Z  FIN    10-configuracion-red
+2026-10-31 10:24:20Z  INICIO 11-recursos-compartidos
+2026-10-31 10:24:21Z  FIN    11-recursos-compartidos
+2026-10-31 10:24:21Z  INICIO 12-procesos
+2026-10-31 10:24:21Z  FIN    12-procesos
+2026-10-31 10:24:21Z  INICIO 13-servicios
+2026-10-31 10:24:22Z  FIN    13-servicios
+2026-10-31 10:24:22Z  INICIO 14-tareas-programadas
+2026-10-31 10:24:23Z  FIN    14-tareas-programadas
+2026-10-31 10:24:24Z  INICIO 15-inicio-automatico
+2026-10-31 10:24:24Z  FIN    15-inicio-automatico
+2026-10-31 10:24:24Z  INICIO 16-usuarios-locales
+2026-10-31 10:24:24Z  FIN    16-usuarios-locales
+2026-10-31 10:24:24Z  INICIO 16b-administradores
+2026-10-31 10:24:24Z  FIN    16b-administradores
+2026-10-31 10:24:25Z  INICIO 17-discos-volumenes
+2026-10-31 10:24:25Z  FIN    17-discos-volumenes
+2026-10-31 10:24:26Z  INICIO 18-usb-conectados
+2026-10-31 10:24:26Z  FIN    18-usb-conectados
+2026-10-31 10:24:26Z  INICIO 19-portapapeles
+2026-10-31 10:24:27Z  FIN    19-portapapeles
+2026-10-31 10:24:27Z  Calculando SHA-256 de los ficheros generados
+2026-10-31 10:24:29Z  Terminado en 11 s. Salida: D:\casos\AFI-UD1-ALMADRABA\FORENSIC_10\vivo\AFI-UD1-ALMADRABA_FORENSIC_10_20261031-102418

@@ -1,0 +1,9 @@
+[Sat 10/31/2026 11:34:04.70] Caso: AFI-UD1-ALMADRABA
+[Sat 10/31/2026 11:34:04.89] Equipo: FORENSIC_10 (hostname: FORENSE-06)
+[Sat 10/31/2026 11:34:05.03] Usuario: FORENSE-06\Administrador
+[Sat 10/31/2026 11:34:05.17] Herramienta: D:\windows\win7\triaje\velociraptor-v0.77.3-windows-amd64-legacy.exe
+[Sat 10/31/2026 11:34:05.29] Comando: velociraptor artifacts collect Windows.Search.FileFinder --args Glob=C:\{$MFT,Windows\System32\config\SAM,Windows\System32\config\SYSTEM,Windows\System32\config\SOFTWARE,Windows\System32\config\SECURITY,Windows\System32\config\DEFAULT,Users\*\NTUSER.DAT,Windows\System32\winevt\Logs\*.evtx} --args Accessor=ntfs --args Upload_File=Y --args Calculate_Hash=Y --output D:\casos\AFI-UD1-ALMADRABA\FORENSIC_10\triaje\FORENSIC_10-triaje-velociraptor.zip
+[Sat 10/31/2026 11:34:05.43] INICIO del triaje (no cierres esta ventana)
+[Sat 10/31/2026 11:34:30.09] FIN del triaje (codigo de salida: 0; 0 = correcto)
+[Sat 10/31/2026 11:34:30.24] Tamano del zip: 17931246 bytes
+[Sat 10/31/2026 11:34:30.37] Los SHA-256 se calculan en la estacion de trabajo del analista

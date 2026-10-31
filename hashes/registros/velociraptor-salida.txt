@@ -1,0 +1,6 @@
+[
+ {
+  "Container": "D:\\casos\\AFI-UD1-ALMADRABA\\FORENSIC_10\\triaje\\FORENSIC_10-triaje-velociraptor.zip",
+  "Error": null
+ }
+]

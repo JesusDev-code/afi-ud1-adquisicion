@@ -1,0 +1,48 @@
+WinPmem64
+Extracting driver to C:\Users\ADMINI~1\AppData\Local\Temp\pmeAE12.tmp
+Driver Unloaded.
+Loaded Driver C:\Users\ADMINI~1\AppData\Local\Temp\pmeAE12.tmp.
+Deleting C:\Users\ADMINI~1\AppData\Local\Temp\pmeAE12.tmp
+The system time is: 10:18:38
+Will generate a RAW image 
+ - buffer_size_: 0x1000
+CR3: 0x0000187000
+ 3 memory ranges:
+Start 0x00001000 - Length 0x0009E000
+Start 0x00100000 - Length 0x3FDE0000
+Start 0x3FF00000 - Length 0x00100000
+max_physical_memory_ 0x40000000
+Acquitision mode PTE Remapping
+Padding from 0x00000000 to 0x00001000
+pad
+ - length: 0x1000
+
+00% 0x00000000 .
+copy_memory
+ - start: 0x1000
+ - end: 0x9f000
+
+00% 0x00001000 .
+Padding from 0x0009F000 to 0x00100000
+pad
+ - length: 0x61000
+
+00% 0x0009F000 .
+copy_memory
+ - start: 0x100000
+ - end: 0x3fee0000
+
+00% 0x00100000 ..................................................
+78% 0x32100000 ..............
+Padding from 0x3FEE0000 to 0x3FF00000
+pad
+ - length: 0x20000
+
+99% 0x3FEE0000 .
+copy_memory
+ - start: 0x3ff00000
+ - end: 0x40000000
+
+99% 0x3FF00000 .
+The system time is: 10:21:38
+Driver Unloaded.
