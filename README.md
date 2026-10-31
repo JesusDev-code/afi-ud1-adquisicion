@@ -1,8 +1,11 @@
 # Adquirir un equipo comprometido — AFI UD1
 
 **Alumno:** Jesús Alfonso Pedreño Domínguez
+
 **Módulo:** Análisis forense informático · Curso de Especialización en Ciberseguridad · IES Rafael Alberti
+
 **Caso:** AFI-UD1-ALMADRABA · equipo FORENSIC_10 (hostname FORENSE-06), de Almadraba Diseño
+
 **Fecha de la adquisición:** 2026-10-31
 
 ## Contenido
