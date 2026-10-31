@@ -1,7 +1,9 @@
 # Validación de las herramientas y desviaciones respecto al enunciado
 
 **Actividad:** AFI · UD1 · Adquirir un equipo comprometido
+
 **Fecha de la validación:** 2026-10-30 (horas en CET, UTC+1)
+
 **Analista:** Jesús Pedreño
 
 Este documento explica por qué la adquisición se hizo con algunas herramientas distintas de las
