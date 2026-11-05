@@ -41,6 +41,10 @@ La hora de cada captura es la de **creación del fichero** en el anfitrión (met
 | 2026-10-30 ~22:30 | Controlador USB en compatibilidad USB 2.0 | Windows 7 no trae drivers de USB 3.0 |
 | 2026-10-31 10:51:35 | Captura de la configuración de la VM, sin encender (`capturas/00-config-vm-hostonly-usb2.png`) | Evidencia del aislamiento antes de tocar el equipo |
 
+*00-config-vm-hostonly-usb2.png*
+
+![Captura 00-config-vm-hostonly-usb2.png](capturas/00-config-vm-hostonly-usb2.png)
+
 ---
 
 ## Herramientas de la parte 1 (validadas en este mismo Windows 7, ver el anexo)
@@ -82,6 +86,50 @@ Por qué cada herramienta (detalle y pruebas en el anexo):
 | ~11:38:41 (real; sello del equipo `2026-10-31_113819`) | 6 · Cifrado | `D:\windows\win7\cifrado\detectar-cifrado.bat` (Run as administrator, Intro ×2) → EDD 3.1 (`EDDv310.exe /batch`), solo lectura | `D:\casos\AFI-UD1-ALMADRABA\FORENSIC_10\cifrado\2026-10-31_113819\` (`edd-salida.txt`, su `.sha256` y `adquisicion.log`). **No se detectan volúmenes cifrados** | `7FADB304B124B7306517D785FC050CA74F7967D945F1FE5C575DD51A99E39AEC`: el de `certutil` en el equipo (`edd-salida.txt.sha256`) **coincide** con el del anfitrión | `12-detectar-cifrado.png` (11:38:47) |
 | 11:44:29 (captura) | 7a · Extracción segura del USB | En el equipo: se cierran las ventanas de `cmd` y el Explorador abiertos en `D:`; *Computer* → `USB-RESP (D:)` → *Eject*. El icono de *Safely Remove Hardware* no aparecía en el área de notificaciones | *"Safe To Remove Hardware: the 'USB-RESP (D:)' device can now be safely removed"*. Se vacían las escrituras pendientes del exFAT, que no tiene diario. Deja huella mínima en el equipo (expulsión del dispositivo) | — | `13-usb-extraido.png` |
 | **11:46:32** (`vmware.log`: `2026-10-31T10:46:32.042Z … Trying hard powerOff`) | 7b · Apagado | VMware → VM → Energía → **Apagar** (*Power Off*, corte de corriente). No se usa *Shut Down Guest* | VM apagada (*Condición: Apagada*). El Notepad de la marca se pierde con la RAM, que ya está en el volcado | — | `14-vm-apagada.png` (11:46:57) |
+
+*04-marca-bloc-de-notas.png*
+
+![Captura 04-marca-bloc-de-notas.png](capturas/04-marca-bloc-de-notas.png)
+
+*05-marca-fichero.png*
+
+![Captura 05-marca-fichero.png](capturas/05-marca-fichero.png)
+
+*06-estado-inicial.png*
+
+![Captura 06-estado-inicial.png](capturas/06-estado-inicial.png)
+
+*08-ram-final.png*
+
+![Captura 08-ram-final.png](capturas/08-ram-final.png)
+
+*09-vivo-final.png*
+
+![Captura 09-vivo-final.png](capturas/09-vivo-final.png)
+
+*10-red-inicio.png*
+
+![Captura 10-red-inicio.png](capturas/10-red-inicio.png)
+
+*15-red-fin.png*
+
+![Captura 15-red-fin.png](capturas/15-red-fin.png)
+
+*11-triaje-final.png*
+
+![Captura 11-triaje-final.png](capturas/11-triaje-final.png)
+
+*12-detectar-cifrado.png*
+
+![Captura 12-detectar-cifrado.png](capturas/12-detectar-cifrado.png)
+
+*13-usb-extraido.png*
+
+![Captura 13-usb-extraido.png](capturas/13-usb-extraido.png)
+
+*14-vm-apagada.png*
+
+![Captura 14-vm-apagada.png](capturas/14-vm-apagada.png)
 
 ### Paso 1 · Horas
 
@@ -127,6 +175,114 @@ Para la línea temporal: **hora real ≈ hora del equipo + 22 s**.
 | 14:39:45 → 14:48:28 | 6e · Marca en la imagen | `sudo mount -o ro,loop,offset=105906176 /mnt/ewf/ewf1 /mnt/img` (206848 × 512; solo lectura). El aviso *"(hint) your fstab has been modified…"* es informativo. Antes, un intento fallido por crear `/mnr/img` en vez de `/mnt/img`. `ls -la /mnt/img/Users/*/Desktop/`. El `cat` no muestra nada (causa no aclarada); `xxd` no está instalado en CAINE, así que se usa `od -c` | `/mnt/img/Users/Administrador/Desktop/marca-jesuspedreno.txt`, **25 bytes**, 2026-10-31 10:09 UTC (11:09 en España, coherente con la captura `05`). `od -c`: **`AFI-JesusPedreno-20261031`** (25 bytes, sin salto de línea final). En el mismo escritorio: `crea_user.py` (11 003 B) y `crea_user.txt` (0 B), del 9 de agosto de 2017 | — | `39-error-mount.png`, `40-mount.png`, `41-marca-imagen-ls.png`, `42-error-xdd.png`, `43-marca-imagen-od.png` |
 | — | (nota) | Disco `DESTINO` (`sda1`, ext4, 20 GB, dentro de la VM CAINE): no se recuerda con certeza cómo se preparó, así que **no se usa** como destino | Destino elegido: el USB de respuesta (`USB-RESP`), que admite la entrega al compañero y lo lee el anfitrión | — | — |
 
+*16-hash-vmdk-antes.png*
+
+![Captura 16-hash-vmdk-antes.png](capturas/16-hash-vmdk-antes.png)
+
+*17-disco-no-persistente.png*
+
+![Captura 17-disco-no-persistente.png](capturas/17-disco-no-persistente.png)
+
+*18-caine-escritorio.png*
+
+![Captura 18-caine-escritorio.png](capturas/18-caine-escritorio.png)
+
+*19-lsblk.png*
+
+![Captura 19-lsblk.png](capturas/19-lsblk.png)
+
+*20-unblock.png*
+
+![Captura 20-unblock.png](capturas/20-unblock.png)
+
+*21-usb-montado.png*
+
+![Captura 21-usb-montado.png](capturas/21-usb-montado.png)
+
+*22-usb-montado-lsbk.png*
+
+![Captura 22-usb-montado-lsbk.png](capturas/22-usb-montado-lsbk.png)
+
+*23-carpeta-imagen.png*
+
+![Captura 23-carpeta-imagen.png](capturas/23-carpeta-imagen.png)
+
+*24-reloj-caine.png*
+
+![Captura 24-reloj-caine.png](capturas/24-reloj-caine.png)
+
+*26-guymager-dialogo-vacio.png*
+
+![Captura 26-guymager-dialogo-vacio.png](capturas/26-guymager-dialogo-vacio.png)
+
+*27-guymager-dialogo.png*
+
+![Captura 27-guymager-dialogo.png](capturas/27-guymager-dialogo.png)
+
+*28-guymager-aviso-espacio.png*
+
+![Captura 28-guymager-aviso-espacio.png](capturas/28-guymager-aviso-espacio.png)
+
+*29-guymager-fin.png*
+
+![Captura 29-guymager-fin.png](capturas/29-guymager-fin.png)
+
+*30-imagen-info-1.png*
+
+![Captura 30-imagen-info-1.png](capturas/30-imagen-info-1.png)
+
+*31-imagen-info-2.png*
+
+![Captura 31-imagen-info-2.png](capturas/31-imagen-info-2.png)
+
+*32-hash-vmdk-despues.png*
+
+![Captura 32-hash-vmdk-despues.png](capturas/32-hash-vmdk-despues.png)
+
+*33-disco-evidencia-quitado.png*
+
+![Captura 33-disco-evidencia-quitado.png](capturas/33-disco-evidencia-quitado.png)
+
+*34-marca-ram.png*
+
+![Captura 34-marca-ram.png](capturas/34-marca-ram.png)
+
+*35-error-unzip.png*
+
+![Captura 35-error-unzip.png](capturas/35-error-unzip.png)
+
+*36-marca-triaje.png*
+
+![Captura 36-marca-triaje.png](capturas/36-marca-triaje.png)
+
+*37-error-ewfmount.png*
+
+![Captura 37-error-ewfmount.png](capturas/37-error-ewfmount.png)
+
+*38-mmls.png*
+
+![Captura 38-mmls.png](capturas/38-mmls.png)
+
+*39-error-mount.png*
+
+![Captura 39-error-mount.png](capturas/39-error-mount.png)
+
+*40-mount.png*
+
+![Captura 40-mount.png](capturas/40-mount.png)
+
+*41-marca-imagen-ls.png*
+
+![Captura 41-marca-imagen-ls.png](capturas/41-marca-imagen-ls.png)
+
+*42-error-xdd.png*
+
+![Captura 42-error-xdd.png](capturas/42-error-xdd.png)
+
+*43-marca-imagen-od.png*
+
+![Captura 43-marca-imagen-od.png](capturas/43-marca-imagen-od.png)
+
 **Desviación:** el enunciado usa el tipo *Inmutable* de VirtualBox. En VMware el equivalente es el modo de disco **Independiente – No persistente**: las escrituras van a un fichero temporal que se descarta al apagar. La prueba de que funcionó es el hash del `.vmdk` antes y después.
 
 ---
@@ -142,6 +298,22 @@ Para la línea temporal: **hora real ≈ hora del equipo + 22 s**.
 | 11:01:57 | Escritorio. Aparece el aviso de Windows *"You must restart your computer to apply these changes"* (Restart Now / Restart Later). Origen probable: Windows detecta el hardware virtual de VMware, distinto del de la OVA (VirtualBox), e instala drivers. No verificado. En el escritorio: `crea_user` (texto), `crea_user` (script de Python) y la Papelera. Reloj del sistema: 11:01 AM, 10/31/2026 | Captura `03-escritorio.png`. **No se reinicia**: se perdería todo lo volátil. No se abre ningún fichero del escritorio | La instalación de drivers modifica el registro y `setupapi` del equipo: consecuencia de virtualizarlo en otro hipervisor |
 | 11:15:26 (captura) | Se conecta el USB de respuesta a la VM (VMware → Dispositivos extraíbles → PHILIPS → Conectar). Windows instala el driver (*"Device driver software installed successfully"*) y lo monta como **`USB-RESP (D:)`**. Sale *AutoPlay*: no se elige ninguna opción y se cierra con la X | Captura `07-usb-conectado.png` (renumerada desde `06-usb-conectado.png`, la hora de creación no cambia) | El USB deja rastro en el equipo: `setupapi.dev.log`, `USBSTOR` y `MountedDevices` en el registro. Inevitable en adquisición en vivo |
 | entre 11:01:57 y 11:06:12 | Se cierra con la X el aviso *"You must restart your computer"* (equivale a *Restart Later*) | No se reinicia | El reinicio queda pendiente en Windows; el corte de corriente del paso 7 evita aplicarlo |
+
+*01-error-recovery-.png*
+
+![Captura 01-error-recovery-.png](capturas/01-error-recovery-.png)
+
+*02-inicio.png*
+
+![Captura 02-inicio.png](capturas/02-inicio.png)
+
+*03-escritorio.png*
+
+![Captura 03-escritorio.png](capturas/03-escritorio.png)
+
+*07-usb-conectado.png*
+
+![Captura 07-usb-conectado.png](capturas/07-usb-conectado.png)
 
 ---
 
@@ -197,6 +369,26 @@ El enunciado admite otra herramienta si se justifica. CAINE monta los discos en 
 | 12:17:40 → 12:55:01 | Maestra en el USB | Comandos de abajo | 9 de 9 `OK` | — |
 | 12:56:40 | Copia de trabajo | La carpeta de `C:` pasa a llamarse `copia-trabajo-EV-07`. El `.E01.txt` conserva la ruta anterior `maestra-EV-07` | Hashes idénticos a los de la maestra | — |
 
+*45-pendrive-general.jpg*
+
+![Captura 45-pendrive-general.jpg](capturas/45-pendrive-general.jpg)
+
+*46-pendrive-datos.jpg*
+
+![Captura 46-pendrive-datos.jpg](capturas/46-pendrive-datos.jpg)
+
+*47-bloqueo-protegido.png*
+
+![Captura 47-bloqueo-protegido.png](capturas/47-bloqueo-protegido.png)
+
+*48-imagen-usb-opciones.png*
+
+![Captura 48-imagen-usb-opciones.png](capturas/48-imagen-usb-opciones.png)
+
+*49-imagen-usb-verificacion.png*
+
+![Captura 49-imagen-usb-verificacion.png](capturas/49-imagen-usb-verificacion.png)
+
 ```bash
 cd ~/Documents/AFI-UD2/maestra-EV-07
 sha256sum USB-RESP-EV07.E0? USB-RESP-EV07.E01.txt > /tmp/ev07.sha
@@ -230,11 +422,23 @@ sha256sum /mnt/ev07p1/marca-jesuspedreno.txt
 | 15:28:13 | Tamaño y particiones | `ewf1`: 31 457 280 000 B (61 440 000 × 512). Partición 1 exFAT desde el sector 2048; partición 2 FAT32 desde el sector 57 212 928. Desplazamiento: 2048 × 512 = 1 048 576 | `50-ev07-particiones.png` |
 | 15:52:56 | Marca en la imagen | USB e imagen en `ro`. `marca-jesuspedreno.txt`, 25 bytes, `AFI-JesusPedreno-20261031`, SHA-256 `ccaa0e42…2cd8d8`, igual al del fichero copiado | `51-ev07-marca.png` |
 
+*50-ev07-particiones.png*
+
+![Captura 50-ev07-particiones.png](capturas/50-ev07-particiones.png)
+
+*51-ev07-marca.png*
+
+![Captura 51-ev07-marca.png](capturas/51-ev07-marca.png)
+
 ---
 
 ## Parte 4 — Copias de trabajo y fichero de hashes
 
 **EV-06.** Copia en `C:\Users\er_pi\Documents\AFI-UD2\copia-trabajo\`, de 09:00:32 a 09:04:59 del 2026-11-03. Primera verificación a las 09:05:41 y segunda a las 09:08:17: 4 de 4 `OK` (`hashes/verificacion-copia-trabajo.txt`, captura `44`).
+
+*44-copia-trabajo-verificada.png*
+
+![Captura 44-copia-trabajo-verificada.png](capturas/44-copia-trabajo-verificada.png)
 
 ```bash
 CASO=/e/casos/AFI-UD1-ALMADRABA/FORENSIC_10
@@ -248,6 +452,10 @@ grep "imagen/" "$CASO/sha256-usb-evidencias.txt" | tr -d '\r' | sed 's#imagen/##
 
 **Comprobación del USB tras la incidencia de CAINE** (16:04:42, captura `52`). Sobre USB-RESP en solo lectura:
 
+*52-reverificacion-usb.png*
+
+![Captura 52-reverificacion-usb.png](capturas/52-reverificacion-usb.png)
+
 ```bash
 cd /media/caine/USB-RESP/casos/AFI-UD1-ALMADRABA/FORENSIC_10
 sha256sum -c sha256-usb-evidencias.txt | grep -v ': OK$'
@@ -257,6 +465,10 @@ echo "Fallos: ${PIPESTATUS[0]}"
 Resultado: ninguna línea distinta de `OK` y `Fallos: 0` en las 37 entradas.
 
 **Fichero de hashes** (terminado hacia las 16:27, captura `53` a las 16:29:41). El USB se pone en escritura solo para este paso:
+
+*53-hashes-sha256.png*
+
+![Captura 53-hashes-sha256.png](capturas/53-hashes-sha256.png)
 
 ```bash
 cd /media/caine/USB-RESP/casos/AFI-UD1-ALMADRABA/FORENSIC_10
@@ -277,9 +489,61 @@ A las 16:56:26, desde Git Bash en el equipo del analista, se copió `bloqueo-usb
 
 **Comprobación de quien recibe.** En su portátil, con CAINE 14 en una VM: USB identificado a las 12:45 (`sdd1`, `USB-RESP`), montado en solo lectura a las 12:50 con `mount -o ro`, `sha256sum -c hashes.sha256` de 12:50 a 13:09 y desmontado a las 13:11. Resultado: 54 de 54 sin `FAILED`. `wc -l` da 54 líneas.
 
+*01-lsblk-usb-identificado-12-45.png*
+
+![Captura 01-lsblk-usb-identificado-12-45.png](capturas/verificacion-companero/01-lsblk-usb-identificado-12-45.png)
+
+*02-montaje-solo-lectura-12-50.png*
+
+![Captura 02-montaje-solo-lectura-12-50.png](capturas/verificacion-companero/02-montaje-solo-lectura-12-50.png)
+
+*03-sha256sum-c-inicio-12-50.png*
+
+![Captura 03-sha256sum-c-inicio-12-50.png](capturas/verificacion-companero/03-sha256sum-c-inicio-12-50.png)
+
+*04-sha256sum-c-imagen-13-04.png*
+
+![Captura 04-sha256sum-c-imagen-13-04.png](capturas/verificacion-companero/04-sha256sum-c-imagen-13-04.png)
+
+*05-sha256sum-c-fin-sin-failed-13-09.png*
+
+![Captura 05-sha256sum-c-fin-sin-failed-13-09.png](capturas/verificacion-companero/05-sha256sum-c-fin-sin-failed-13-09.png)
+
+*06-wc-54-y-desmontaje-13-11.png*
+
+![Captura 06-wc-54-y-desmontaje-13-11.png](capturas/verificacion-companero/06-wc-54-y-desmontaje-13-11.png)
+
 Incidencia: la salida no se guardó en un fichero porque se tecleó `$/` en lugar de `~/` en el `tee`. Las capturas no muestran todas las líneas: se ven 41 de 54, con todas las de `memoria/`, `vivo/`, `triaje/` y `cifrado/`, `FORENSIC_10.info`, `FORENSIC_10.E01` y el final de `pendrive/`. Las otras 13 no se ven. El resultado se apoya en que la captura final no muestra el aviso `WARNING` que `sha256sum -c` escribe al terminar si algún fichero falla. Capturas y resumen en `capturas/verificacion-companero/`.
 
+*01-lsblk-usb-identificado-12-45.png*
+
+![Captura 01-lsblk-usb-identificado-12-45.png](capturas/verificacion-companero/01-lsblk-usb-identificado-12-45.png)
+
+*02-montaje-solo-lectura-12-50.png*
+
+![Captura 02-montaje-solo-lectura-12-50.png](capturas/verificacion-companero/02-montaje-solo-lectura-12-50.png)
+
+*03-sha256sum-c-inicio-12-50.png*
+
+![Captura 03-sha256sum-c-inicio-12-50.png](capturas/verificacion-companero/03-sha256sum-c-inicio-12-50.png)
+
+*04-sha256sum-c-imagen-13-04.png*
+
+![Captura 04-sha256sum-c-imagen-13-04.png](capturas/verificacion-companero/04-sha256sum-c-imagen-13-04.png)
+
+*05-sha256sum-c-fin-sin-failed-13-09.png*
+
+![Captura 05-sha256sum-c-fin-sin-failed-13-09.png](capturas/verificacion-companero/05-sha256sum-c-fin-sin-failed-13-09.png)
+
+*06-wc-54-y-desmontaje-13-11.png*
+
+![Captura 06-wc-54-y-desmontaje-13-11.png](capturas/verificacion-companero/06-wc-54-y-desmontaje-13-11.png)
+
 **Devolución.** 2026-11-05, 13:13. Sergio Estudillo Marabot devuelve USB-RESP a Jesús Alfonso Pedreño Domínguez. El resumen de Sergio indica 13:12 para la desconexión y la devolución; el registro mantiene 13:13, la hora anotada al recibirlo. Número de serie comprobado al recibirlo (`3798771057290437452`). `hashes.sha256` idéntico a `hashes/hashes.sha256`, con 54 líneas. `sha256sum -c hashes.sha256` en Git Bash, de 13:14:58 a 13:30:38: 54 de 54 `OK`, sin `FAILED` ni `WARNING`. Salida completa en `hashes/verificacion-devolucion.txt`, captura `54`.
+
+*54-verificacion-devolucion.png*
+
+![Captura 54-verificacion-devolucion.png](capturas/54-verificacion-devolucion.png)
 
 **Firmas.** 2026-11-05, 13:45. Firmas escritas, no manuscritas: nombre y fecha en cada casilla del acta y del registro, con la conformidad de Jesús Alfonso Pedreño Domínguez y de Sergio Estudillo Marabot, presentes los dos. Las dos filas de custodia del 2026-11-03 al 2026-11-05 se añadieron después, al revisar el registro, y las firmó Jesús Alfonso Pedreño Domínguez el 2026-11-05 14:14. Las filas de Sergio no cambiaron. El profesor acepta las firmas escritas.
 
@@ -299,6 +563,30 @@ Incidencia: la salida no se guardó en un fichero porque se tecleó `$/` en luga
 | 15:44:39, 15:49 | Erratas al teclear: `sudo -o`, `EV07P1` y `jesuspredeno` | Se repiten los comandos | Ninguna (`50e`, `50f`) |
 | 16:27 | `hashes.sha256` figura en Windows con hora 17:27. CAINE trata la hora local como UTC (captura `24`) y exFAT guarda esa referencia, lo que explicaría la hora de más | Vale la hora de la captura | Solo la fecha del fichero |
 | Revisión | `FOUND.000` en la raíz, con `FILE0000.CHK` (28 278 784 B) y `FILE0001.CHK` (471 433 216 B), del 2026-10-31 13:20. La hora cae en la sesión de CAINE del 2026-10-31, justo antes del inicio de Guymager (13:21:15). El responsable de la custodia recuerda desconexiones incorrectas en las VM y una reparación de Windows, sin hora exacta. Causa no confirmada | Se conservan sin abrir. Los hashes posteriores coinciden | Soporte; ninguna evidencia con hash |
+
+*50a-error-montaje-e07.png*
+
+![Captura 50a-error-montaje-e07.png](capturas/50a-error-montaje-e07.png)
+
+*50b-error-mount-superblock.png*
+
+![Captura 50b-error-mount-superblock.png](capturas/50b-error-mount-superblock.png)
+
+*50c-error-sdb1-exfat.png*
+
+![Captura 50c-error-sdb1-exfat.png](capturas/50c-error-sdb1-exfat.png)
+
+*50d-usb-reenumerado.png*
+
+![Captura 50d-usb-reenumerado.png](capturas/50d-usb-reenumerado.png)
+
+*50e-error-sudo.png*
+
+![Captura 50e-error-sudo.png](capturas/50e-error-sudo.png)
+
+*50f-erratas-ls-grep.png*
+
+![Captura 50f-erratas-ls-grep.png](capturas/50f-erratas-ls-grep.png)
 
 ---
 
@@ -341,6 +629,10 @@ SHA-2**. Las versiones actuales de DumpIt, KAPE y el script del módulo están h
 | USB de respuesta | Pendrive PHILIPS de 32 GB, exFAT, etiqueta `USB-RESP` |
 | Red de la VM | Cambiada de *bridged* (como venía en la OVA) a *host-only* antes de arrancarla. Captura de validación `10` |
 
+*10-vm-importada-red-bridged.png*
+
+![Captura 10-vm-importada-red-bridged.png](capturas/validacion/10-vm-importada-red-bridged.png)
+
 ---
 
 ### A.3. Cronología
@@ -364,6 +656,38 @@ SHA-2**. Las versiones actuales de DumpIt, KAPE y el script del módulo están h
 | 20:16 | EDD 3.1 | **Válido** |
 | 20:26 | 21 herramientas de consola de Sysinternals | 19 válidas, 2 fallan. Capturas de validación `14`–`16` |
 | 20:4x | SHA-256 de la OVA antes de reimportarla | `DAF0EF52…14930C`, sin cambios |
+
+*08-powershell-2.0.png*
+
+![Captura 08-powershell-2.0.png](capturas/validacion/08-powershell-2.0.png)
+
+*09-dumpit-0xC0000428.png*
+
+![Captura 09-dumpit-0xC0000428.png](capturas/validacion/09-dumpit-0xC0000428.png)
+
+*11-respuesta-en-vivo-original-parsererror.png*
+
+![Captura 11-respuesta-en-vivo-original-parsererror.png](capturas/validacion/11-respuesta-en-vivo-original-parsererror.png)
+
+*12-kape-notsupportedexception.png*
+
+![Captura 12-kape-notsupportedexception.png](capturas/validacion/12-kape-notsupportedexception.png)
+
+*13-velociraptor-legacy-sin-ucrt.png*
+
+![Captura 13-velociraptor-legacy-sin-ucrt.png](capturas/validacion/13-velociraptor-legacy-sin-ucrt.png)
+
+*14-autorunsc-entry-point.png*
+
+![Captura 14-autorunsc-entry-point.png](capturas/validacion/14-autorunsc-entry-point.png)
+
+*15-procdump-falta-dll.png*
+
+![Captura 15-procdump-falta-dll.png](capturas/validacion/15-procdump-falta-dll.png)
+
+*16-pslist-licencia.png*
+
+![Captura 16-pslist-licencia.png](capturas/validacion/16-pslist-licencia.png)
 
 ---
 
