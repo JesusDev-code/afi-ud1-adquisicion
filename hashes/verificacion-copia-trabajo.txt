@@ -1,0 +1,20 @@
+Verificacion de la copia de trabajo de EV-06 frente a la imagen maestra
+Caso: AFI-UD1-ALMADRABA
+Maestra: USB-RESP, casos/AFI-UD1-ALMADRABA/FORENSIC_10/imagen/
+Copia: C:\Users\er_pi\Documents\AFI-UD2\copia-trabajo\
+Copia realizada: 2026-11-03, de 09:00:32 a 09:04:59 (CET)
+Primera verificacion: terminada a las 09:05:41 (CET), 4 de 4 OK
+
+Esta verificacion: 2026-11-03 09:08:17 +0100
+
+$ sha256sum FORENSIC_10.E01 FORENSIC_10.E02 FORENSIC_10.E03 FORENSIC_10.info
+cc504abd2282c213873c23c69904daec731eda7918b1c422cb2f20e2b5802edb *FORENSIC_10.E01
+66ec79161dd06246d6793ecf2f6b985a574d7c6efe12eea14600585371cee471 *FORENSIC_10.E02
+7a9a58febeda1c9177b185d7492639ed52f1d1389d15bb64a7b971913ea2cc27 *FORENSIC_10.E03
+dfbf5262be4a0d853346f5cf5138d3cf5636f3c2aa5126455f741760b16192e1 *FORENSIC_10.info
+
+$ sha256sum -c (lineas imagen/ de sha256-usb-evidencias.txt)
+FORENSIC_10.E01: OK
+FORENSIC_10.E02: OK
+FORENSIC_10.E03: OK
+FORENSIC_10.info: OK

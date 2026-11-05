@@ -1,0 +1,24 @@
+Verificacion de las evidencias de Jesus Pedreno
+Caso: AFI-UD1-ALMADRABA / FORENSIC_10
+Fecha: 05/11/2026 (UTC+1)
+
+Equipo:        portatil de Sergio Estudillo Marabot, VM CAINE 14.0 (live)
+Ejecutado por: Sergio Estudillo Marabot
+Dispositivo:   USB de Jesus, particion sdd1, etiqueta USB-RESP (exFAT)
+Montaje:       sudo mount -o ro LABEL=USB-RESP /media/jesus   (solo lectura)
+Carpeta:       /media/jesus/casos/AFI-UD1-ALMADRABA/FORENSIC_10
+Comando:       sha256sum -c hashes.sha256
+
+Resultado:     54 lineas en hashes.sha256 (wc -l), todas OK, ningun FAILED
+               -> 54/54 OK
+
+Horas (segun la hora de las capturas):
+  12:45  USB identificado (lsblk -f)
+  12:50  montado en solo lectura e inicio de sha256sum -c
+  13:09  fin de la verificacion, sin FAILED
+  13:11  wc -l = 54 y desmontaje (umount)
+  13:12  desconectado en VMware y devuelto a Jesus Pedreno
+
+Incidencia: el fichero de salida no se guardo porque en el comando
+"| tee ~/verificacion-companero.txt" se tecleo "$/" en lugar de "~/"
+(teclado en distribucion US). La salida completa consta en las capturas 03-06.
