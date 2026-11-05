@@ -271,6 +271,8 @@ A las 16:56:26, desde Git Bash en el equipo del analista, se copió `bloqueo-usb
 
 ### Entrega a otra persona y devolución
 
+**Custodia hasta la entrega.** Desde las 16:56 del 2026-11-03 hasta la entrega, USB-RESP estuvo siempre bajo el control de Jesús Alfonso Pedreño Domínguez.
+
 **Entrega.** 2026-11-05, ~12:30 (hora aproximada, anotada después de la entrega). Jesús Alfonso Pedreño Domínguez entrega USB-RESP a Sergio Estudillo Marabot. Motivo: comprobación por un tercero.
 
 **Comprobación de quien recibe.** En su portátil, con CAINE 14 en una VM: USB identificado a las 12:45 (`sdd1`, `USB-RESP`), montado en solo lectura a las 12:50 con `mount -o ro`, `sha256sum -c hashes.sha256` de 12:50 a 13:09 y desmontado a las 13:11. Resultado: 54 de 54 sin `FAILED`. `wc -l` da 54 líneas.
@@ -279,7 +281,7 @@ Incidencia: la salida no se guardó en un fichero porque se tecleó `$/` en luga
 
 **Devolución.** 2026-11-05, 13:13. Sergio Estudillo Marabot devuelve USB-RESP a Jesús Alfonso Pedreño Domínguez. El resumen de Sergio indica 13:12 para la desconexión y la devolución; el registro mantiene 13:13, la hora anotada al recibirlo. Número de serie comprobado al recibirlo (`3798771057290437452`). `hashes.sha256` idéntico a `hashes/hashes.sha256`, con 54 líneas. `sha256sum -c hashes.sha256` en Git Bash, de 13:14:58 a 13:30:38: 54 de 54 `OK`, sin `FAILED` ni `WARNING`. Salida completa en `hashes/verificacion-devolucion.txt`, captura `54`.
 
-**Firmas.** 2026-11-05, 13:45. Firmas escritas, no manuscritas: nombre y fecha en cada casilla del acta y del registro, con la conformidad de Jesús Alfonso Pedreño Domínguez y de Sergio Estudillo Marabot, presentes los dos.
+**Firmas.** 2026-11-05, 13:45. Firmas escritas, no manuscritas: nombre y fecha en cada casilla del acta y del registro, con la conformidad de Jesús Alfonso Pedreño Domínguez y de Sergio Estudillo Marabot, presentes los dos. Las dos filas de custodia del 2026-11-03 al 2026-11-05 se añadieron después, al revisar el registro, y las firmó Jesús Alfonso Pedreño Domínguez el 2026-11-05 14:14. Las filas de Sergio no cambiaron. El profesor acepta las firmas escritas.
 
 ---
 
