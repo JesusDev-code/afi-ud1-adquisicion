@@ -1,7 +1,7 @@
 # Notas de trabajo — AFI UD1 · Adquirir un equipo comprometido
 
 **Hora de referencia:** la del equipo del analista (anfitrión), en CET (UTC+1). Fechas siempre en formato `AAAA-MM-DD`.
-La hora de cada captura es la de **creación del fichero** en el anfitrión (metadatos), al segundo.
+La hora de las capturas es, salvo que se indique otra cosa, la de **creación del fichero** en el anfitrión (metadatos), al segundo. Excepciones: las de `capturas/verificacion-companero/` llevan la hora del equipo del compañero; la `54` se hizo a las 13:44, después de la comprobación que muestra, y las fotografías `45` y `46` llevan una hora aproximada.
 
 ---
 
