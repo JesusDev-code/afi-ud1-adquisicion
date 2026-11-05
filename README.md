@@ -16,7 +16,7 @@
 | [`registro-custodia.pdf`](registro-custodia.pdf) | Un registro de custodia por evidencia (EV-01 a EV-07), con todas las transferencias, incluidas la entrega al compañero y la devolución, firmadas |
 | [`hashes/`](hashes/) | `hashes.sha256` con todas las evidencias, las demás listas de hashes y los registros de las herramientas (`.info` de Guymager, `.E01.txt` de FTK Imager, `bloqueo-usb.log`, WinPmem, Velociraptor, EDD y el script de datos volátiles) |
 | [`capturas/`](capturas/) | Capturas 00 a 54 y 50a a 50f, por orden. `capturas/validacion/` tiene las de la validación previa de las herramientas y `capturas/verificacion-companero/`, las de la comprobación del compañero con su resumen |
-| [`notas-de-trabajo.md`](notas-de-trabajo.md) | Cuaderno de la intervención: comandos, horas, decisiones e incidencias. Incluye en su anexo la validación de las herramientas |
+| [`notas-de-trabajo.md`](notas-de-trabajo.md) | Cuaderno de la intervención: comandos, horas, decisiones e incidencias, con las capturas junto a cada paso. Incluye en su anexo la validación de las herramientas |
 
 ## Evidencias
 
@@ -65,4 +65,4 @@ probadas antes en el mismo sistema:
 | Disco «Inmutable» | Disco independiente no persistente | Equivalente en VMware; el hash del `.vmdk` lo confirma |
 | Pendrive distinto del USB de respuesta | USB-RESP como pendrive encontrado | Autorizado por el responsable de la actividad el 2026-11-03 |
 
-El detalle está en el anexo de [`notas-de-trabajo.md`](notas-de-trabajo.md).
+El detalle de cada cambio, con sus pruebas y capturas, está en el [anexo de las notas: validación de las herramientas](notas-de-trabajo.md#anexo--validación-de-las-herramientas-2026-10-30).

@@ -211,6 +211,10 @@ Para la línea temporal: **hora real ≈ hora del equipo + 22 s**.
 
 ![Captura 24-reloj-caine.png](capturas/24-reloj-caine.png)
 
+*25-guymager-dispositivos.png*
+
+![Captura 25-guymager-dispositivos.png](capturas/25-guymager-dispositivos.png)
+
 *26-guymager-dialogo-vacio.png*
 
 ![Captura 26-guymager-dialogo-vacio.png](capturas/26-guymager-dialogo-vacio.png)
@@ -488,30 +492,6 @@ A las 16:56:26, desde Git Bash en el equipo del analista, se copió `bloqueo-usb
 **Entrega.** 2026-11-05, ~12:30 (hora aproximada, anotada después de la entrega). Jesús Alfonso Pedreño Domínguez entrega USB-RESP a Sergio Estudillo Marabot. Motivo: comprobación por un tercero.
 
 **Comprobación de quien recibe.** En su portátil, con CAINE 14 en una VM: USB identificado a las 12:45 (`sdd1`, `USB-RESP`), montado en solo lectura a las 12:50 con `mount -o ro`, `sha256sum -c hashes.sha256` de 12:50 a 13:09 y desmontado a las 13:11. Resultado: 54 de 54 sin `FAILED`. `wc -l` da 54 líneas.
-
-*01-lsblk-usb-identificado-12-45.png*
-
-![Captura 01-lsblk-usb-identificado-12-45.png](capturas/verificacion-companero/01-lsblk-usb-identificado-12-45.png)
-
-*02-montaje-solo-lectura-12-50.png*
-
-![Captura 02-montaje-solo-lectura-12-50.png](capturas/verificacion-companero/02-montaje-solo-lectura-12-50.png)
-
-*03-sha256sum-c-inicio-12-50.png*
-
-![Captura 03-sha256sum-c-inicio-12-50.png](capturas/verificacion-companero/03-sha256sum-c-inicio-12-50.png)
-
-*04-sha256sum-c-imagen-13-04.png*
-
-![Captura 04-sha256sum-c-imagen-13-04.png](capturas/verificacion-companero/04-sha256sum-c-imagen-13-04.png)
-
-*05-sha256sum-c-fin-sin-failed-13-09.png*
-
-![Captura 05-sha256sum-c-fin-sin-failed-13-09.png](capturas/verificacion-companero/05-sha256sum-c-fin-sin-failed-13-09.png)
-
-*06-wc-54-y-desmontaje-13-11.png*
-
-![Captura 06-wc-54-y-desmontaje-13-11.png](capturas/verificacion-companero/06-wc-54-y-desmontaje-13-11.png)
 
 Incidencia: la salida no se guardó en un fichero porque se tecleó `$/` en lugar de `~/` en el `tee`. Las capturas no muestran todas las líneas: se ven 41 de 54, con todas las de `memoria/`, `vivo/`, `triaje/` y `cifrado/`, `FORENSIC_10.info`, `FORENSIC_10.E01` y el final de `pendrive/`. Las otras 13 no se ven. El resultado se apoya en que la captura final no muestra el aviso `WARNING` que `sha256sum -c` escribe al terminar si algún fichero falla. Capturas y resumen en `capturas/verificacion-companero/`.
 
@@ -832,3 +812,9 @@ Capturas `08` a `16` en `capturas/validacion/`; `COMPATIBILIDAD.txt` y `prueba-c
   <https://github.com/Velocidex/velociraptor-triage-collector>
 - Microsoft Update Catalog, KB2999226: <https://www.catalog.update.microsoft.com/Search.aspx?q=KB2999226>
 - Magnet RAM Capture / DumpIt: <https://magnetforensics.com/free-tool-magnet-ram-capture>
+
+### A.9. Lecciones
+
+- **Una herramienta solo está validada para el sistema en el que se ha probado.** Validar en Windows 11 no dice nada de Windows 7. Antes de tocar el equipo hay que saber qué sistema tiene.
+- **La memoria no admite un segundo intento.** Por eso las herramientas se validan antes, en una copia del mismo sistema.
+- El kit del USB se reorganizó en `windows\moderno\` (Windows 10/11) y `windows\win7\` (Windows 7/8), con una tabla `COMPATIBILIDAD.txt` que dice qué herramienta se ha validado en qué sistema, cuándo y con qué resultado.
